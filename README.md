@@ -2,8 +2,8 @@
 
 ---
 
-This is client publisher to handle sending sensor data to broker.<br>
-I'm using free external broker that provide by **EMQX**.<br>
+This is client publisher to handle sending sensor data to broker.\
+I'm using free external broker that provide by **EMQX**.
 
 ## Configuration
 
@@ -29,6 +29,5 @@ This client contain 6 topic that represent each data will be sending.<br>
 
 ## Installation
 
-To install all library that used on this application, just type `pip install -r requirement.txt` on core project.
-
+To install all library that used on this application, just type `pip install -r requirement.txt` on core project.\
 Or if you are using `pipenv` package manager, just type `pipenv install` on core project.
