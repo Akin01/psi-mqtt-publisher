@@ -12,7 +12,6 @@ Here are connection configuration tha i've used :
 ```
 host : broker.emqx.io
 port : 8083
-
 ```
 
 ## Topic
