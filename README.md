@@ -30,6 +30,6 @@ This client contain 6 topic that represent each data will be sending.<br>
 
 ## Installation
 
-To install all library that used on this application, just type `pip install -r requirement` on core project.
+To install all library that used on this application, just type `pip install -r requirement.txt` on core project.
 
 Or if you are using `pipenv` package manager, just type `pipenv install` on core project.
