@@ -7,6 +7,7 @@ name = "pypi"
 paho-mqtt = "*"
 python-dotenv = "*"
 pyserial = "*"
+requests = "*"
 
 [dev-packages]
 

@@ -1,6 +1,8 @@
 import random
 from paho.mqtt import client as paho
 from dotenv import dotenv_values
+import requests
+import time
 
 import serial
 import Rpi.GPIO as GPIO
@@ -16,6 +18,8 @@ client_id = f'psi_responsi-{random.random()}'
 # 'DEV' for testing using dummy data
 # 'PROD' for running the system using real data
 MODE = 'DEV'
+
+API_URL = 'http://localhost:4000/api/psi'
 
 
 def setup():
@@ -44,9 +48,25 @@ def connect_handler(onConnect_cb, host, port):
     return client
 
 
+def push_data(data):
+    formatted_data = {
+            "temperature": data[0],
+            "totalLpg": data[1],
+            "numberOfSample": data[2],
+            "massa": data[3],
+            "isStop": data[4],
+            "isGas": data[5]
+        }
+    res = requests.post(API_URL, formatted_data)
+
+    return res
+
+
 def publish_handler(client):
 
     io = setup()
+
+    init_time = time.time()
 
     while True:
         cleaned_data = []
@@ -87,6 +107,11 @@ def publish_handler(client):
                     print(f'{msg} has been succesfully sending to {topic}')
                 else:
                     print('sending failed.')
+
+            if int(time.time() - init_time) == 5:
+                res = push_data(cleaned_data)
+                if res.status_code == 200:
+                    print(f'Data sending succesfully to {res.url}')
 
 
 if __name__ == '__main__':
